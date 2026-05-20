@@ -16,7 +16,7 @@
   ?>
 <nav class="navbar">
   <div class="navbar-left">
-    <img src="/Si-SPPG/assets/img/Logo_Badan_Gizi_Nasional_(2024).png" alt="Logo Badan Gizi" style="height:50px; width:50px; object-fit:contain; border-radius:6px;">
+    <img src="../assets/img/Logo_Badan_Gizi_Nasional_(2024).png" alt="Logo Badan Gizi" style="height:50px; width:50px; object-fit:contain; border-radius:6px;">
     <h1>SI-SPPG Pucang 2</h1>
   </div>
 

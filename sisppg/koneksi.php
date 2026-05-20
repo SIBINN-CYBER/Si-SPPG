@@ -1,8 +1,8 @@
 <?php
 $host = "localhost";
 $user = "root";
-$pass = "";
-$db = "si-sppg";
+$pass = "120408";
+$db = "db_si_sppg";
 
 $koneksi = mysqli_connect($host, $user, $pass, $db);
 if (!$koneksi) {
