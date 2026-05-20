@@ -1,7 +1,11 @@
 <?php
 $host = "localhost";
 $user = "root";
+<<<<<<< HEAD:sisppg/koneksi.php
 $pass = "120408";
+=======
+$pass = "";
+>>>>>>> 01610564ca39128da84ad629f247434c762eb480:koneksi.php
 $db = "db_si_sppg";
 
 $koneksi = mysqli_connect($host, $user, $pass, $db);
