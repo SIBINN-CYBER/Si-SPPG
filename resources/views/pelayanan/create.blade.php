@@ -2,122 +2,75 @@
 
 @section('title', 'Pelayanan & Pengajuan')
 
-@section('styles')
-   <style>
-      html, body {
-         overflow-y: scroll; /* Always show scrollbar to prevent layout shifts */
-         height: 100%;
-      }
-      body {
-         background-color: #f4f6f9;
-         margin: 0;
-         padding: 0;
-         font-family: 'Segoe UI', Arial, sans-serif;
-         padding-top: 76px;
-         display: flex;
-         flex-direction: column;
-      }
-      .content-wrapper {
-         flex-grow: 1;
-      }
-      .main {
-         max-width: 600px;
-         background: white;
-         margin: 30px auto;
-         padding: 30px;
-         border-radius: 8px;
-         box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      }
-      h2 {
-         text-align: center;
-         color: #002b6b;
-         margin-top: 0;
-         margin-bottom: 20px;
-      }
-      .form-group {
-         margin-bottom: 15px;
-      }
-      .form-group label {
-         display: block;
-         margin-bottom: 5px;
-         font-weight: bold;
-      }
-      .form-group input,
-      .form-group select,
-      .form-group textarea {
-         width: 100%;
-         padding: 10px;
-         border: 1px solid #ccc;
-         border-radius: 4px;
-         box-sizing: border-box;
-      }
-      .form-group textarea {
-         resize: vertical;
-         min-height: 100px;
-      }
-      .btn-submit {
-         background-color: #1d2975;
-         color: white;
-         padding: 12px 20px;
-         border: none;
-         border-radius: 4px;
-         cursor: pointer;
-         width: 100%;
-         font-size: 16px;
-      }
-      .btn-submit:hover {
-         background-color: #002b6b;
-      }
-      .pesan-sukses {
-         background-color: #d4edda;
-         color: #155724;
-         padding: 10px;
-         border-radius: 4px;
-         margin-bottom: 20px;
-         text-align: center;
-      }
-
-      @media (max-width: 768px) {
-        .main {
-            padding: 20px;
-        }
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: calc(100% - 20px); /* Adjust for padding */
-        }
-      }
-   </style>
-@endsection
-
 @section('content')
-<div class="content-wrapper">
-    <div class="main">
-        <h2>Pelayanan & Pengajuan</h2>
+<div class="bg-slate-50 min-h-screen py-12 px-4 sm:px-6 lg:px-8 flex items-center justify-center">
+    <div class="max-w-xl w-full">
+        <!-- Header -->
+        <div class="text-center mb-10">
+            <h2 class="text-3xl font-bold text-blue-900 tracking-tight">Pelayanan & Pengajuan</h2>
+            <p class="mt-2 text-slate-500">Sampaikan keluhan atau permintaan Anda kepada kami</p>
+        </div>
 
         @if(session('pesan_sukses'))
-            <div class="pesan-sukses">{{ session('pesan_sukses') }}</div>
+            <div class="mb-8 rounded-xl bg-emerald-50 p-4 border border-emerald-200 shadow-sm transform transition-all duration-300 flex items-start">
+                <div class="flex-shrink-0">
+                    <svg class="h-5 w-5 text-emerald-400" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                    </svg>
+                </div>
+                <div class="ml-3">
+                    <p class="text-sm font-medium text-emerald-800">
+                        {{ session('pesan_sukses') }}
+                    </p>
+                </div>
+            </div>
         @endif
 
-        <form action="{{ route('pelayanan.store') }}" method="POST">
-            @csrf
-            <div class="form-group">
-                <label for="nama">Nama</label>
-                <input type="text" id="nama" name="nama" required>
-            </div>
-            <div class="form-group">
-                <label for="jenis_pengajuan">Jenis Pengajuan</label>
-                <select id="jenis_pengajuan" name="jenis_pengajuan" required>
-                    <option value="Request">Request</option>
-                    <option value="Keluhan">Keluhan</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="pesan">Pesan</label>
-                <textarea id="pesan" name="pesan" required></textarea>
-            </div>
-            <button type="submit" class="btn-submit">Kirim</button>
-        </form>
+        <!-- Form Card -->
+        <div class="bg-white py-8 px-6 sm:px-10 rounded-2xl shadow-sm border border-slate-100">
+            <form action="{{ route('pelayanan.store') }}" method="POST" class="space-y-6">
+                @csrf
+                
+                <div>
+                    <label for="nama" class="block text-sm font-semibold text-slate-700 mb-1">Nama Lengkap</label>
+                    <div class="mt-1">
+                        <input id="nama" name="nama" type="text" required 
+                               class="appearance-none block w-full px-4 py-3 border border-slate-300 rounded-xl shadow-sm placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors sm:text-sm" 
+                               placeholder="Masukkan nama Anda">
+                    </div>
+                </div>
+
+                <div>
+                    <label for="jenis_pengajuan" class="block text-sm font-semibold text-slate-700 mb-1">Jenis Pengajuan</label>
+                    <div class="mt-1 relative">
+                        <select id="jenis_pengajuan" name="jenis_pengajuan" required 
+                                class="appearance-none block w-full px-4 py-3 border border-slate-300 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors sm:text-sm bg-white">
+                            <option value="" disabled selected>Pilih jenis pengajuan...</option>
+                            <option value="Request">Request (Permintaan)</option>
+                            <option value="Keluhan">Keluhan</option>
+                        </select>
+                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-slate-500">
+                            <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <label for="pesan" class="block text-sm font-semibold text-slate-700 mb-1">Pesan / Detail</label>
+                    <div class="mt-1">
+                        <textarea id="pesan" name="pesan" rows="5" required 
+                                  class="appearance-none block w-full px-4 py-3 border border-slate-300 rounded-xl shadow-sm placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors sm:text-sm resize-none" 
+                                  placeholder="Tuliskan secara rinci pengajuan atau keluhan Anda di sini..."></textarea>
+                    </div>
+                </div>
+
+                <div class="pt-2">
+                    <button type="submit" class="w-full flex justify-center py-3.5 px-4 border border-transparent rounded-xl shadow-sm text-sm font-bold text-white bg-blue-900 hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-300 hover:shadow-md transform hover:-translate-y-0.5">
+                        Kirim Pesan
+                    </button>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 @endsection
